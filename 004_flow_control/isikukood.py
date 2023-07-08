@@ -53,9 +53,29 @@ while True:
                     if int(isikukood[1:3]) >= 13:
                         print('It is impossible to determine region for your ID code')
                         continue
-                # CODE HERE #
+                elif '001' <= isikukood[7:10] <= '010':
+                    print('Kuressaare haigla')
             elif user_choice == '4':
-                pass
+                chk1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1]
+                chk2 = [3, 4, 5, 6, 7, 8, 9, 1, 2, 3]
+                result = 0
+                counter = 0
+                for num in chk1:
+                    result += num * int(isikukood[counter])
+                    counter += 1
+                if result % 11 == int(isikukood[-1]):
+                    print(isikukood, 'is valid 1')
+                else:
+                    result = 0
+                    counter = 0
+                    for num in chk2:
+                        result += num * int(isikukood[counter])
+                        counter += 1
+                    if result % 11 == int(isikukood[-1]):
+                        print(isikukood, 'is valid 2')
+                    else:
+                        print(isikukood, 'is invalid')
+
             elif user_choice == '5':
                 break
             elif user_choice == '0':

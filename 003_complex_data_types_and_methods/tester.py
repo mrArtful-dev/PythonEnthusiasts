@@ -1,35 +1,77 @@
-nums = [1, 2, 3, 4, 5]
-squares = []
-
-# for num in nums:
-#     print(num ** 2)
 #
+# # empty = {}
+# empty = dict()
+#
+# print(bool(empty))
 
-# for num in nums:
-#     squares.append(num ** 2)
+x = 5
+student = {'name': 'Jack', 'age': 32, 'courses': ['Math', 'Art', {'town': 'Tallinn'}, 'Programming'], 1: 'int key', 0.2: 'float key',
+           x: 'var_key', 'var_val': x, True: 'Hello world!'}
+
+# print(student['name'])
+# print(student[1])
+#
+# doubles = {'name1': 'Jack', 'name2': 'Jack', 'name3': 'Jack'}
+# print(doubles['name1'])
+# print(doubles['name2'])
+# print(doubles['name3'])
+
+# print(student['job'])
+# print(student.get('job', {}))
+
+# print(student['courses'][2].get('town'))
+
+# student['name'] = 'Mary'
+# student['phone'] = '555555555'
+# print(student)
+
+# squares = {}
+# for num in range(10):
+#     squares[num] = num ** 2
 #
 # print(squares)
 
-# for num in range(1, 101):
-#     print(num ** 3)
+# new = {'name': 'Mary', 'age': 25, 'phone': '555-555-5555'}
+# student.update(new)
+# print(student)
+#
+# student.update(job='Programmer')
+# student.update({'job': 'Programmer'})
+# print(student)
 
+# popped_item = student.pop('name')
+# print(student)
+# print(popped_item)
+#
+# del student['age']
+# print(student)
+#
+# print(len(student))
 
-people = [('Jack', 'Smith', 30), ('Mary', 'Gold', 19), ('Bob', 'Green', 15)]
+# for x in student:
+#     print(student[x])
 
-# for person in people:
-#     print(f'Hello {person[0]} {person[1]}. You are {person[2]} years old.')
+# print(student.keys())
+# print(student.values())
+# print(student.items())
+#
+# for key, value in student.items():
+#     print(key, value)
 
-# for name, surname, age in people:
-#     print(f'Hello {name} {surname}. You are {age} years old.')
+# quizz = {
+#     'math': [{
+#         'q1': 'Question 1',
+#         'answers': ['a1', 'a2', 'a3', 'a4'],
+#         'correct': 'a3'
+#     }, {
+#         'q2': 'Question 2',
+#
+#     }
+#     ],
+#     'biology' : [
+#         {
+#
+#         }
+#     ]
+# }
 
-# for name, surname, age in people:
-#     if age >= 18:
-#         print(f'Hello {name} {surname}. You are {age} years old. You are adult!')
-#     else:
-#         print(f'Hello {name} {surname}. You are {age} years old. You are a child!')
-
-for num1 in range(10):
-    for num2 in range(10):
-        for num3 in range(10):
-            for num4 in range(10):
-                print(num1, num2, num3, num4)
