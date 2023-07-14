@@ -1,4 +1,6 @@
-import datetime
+
+from datetime import datetime, timedelta
+
 """
 Под каждым комментарием нужно написать одну функцию/программу
 Задание в комментарии
@@ -7,44 +9,47 @@ output - параметр который функция возвращает
 """
 
 
+
 # Write a program that converts given string to datetime object
 sample1 = 'Jan 1 2014 2:43PM'
-dt1 = datetime.datetime.strptime(sample1, '%b %d %Y %I:%M%p')
-print(dt1)
 sample2 = '14:20 10/12/22'  # YY/MM/DD
-dt2 = datetime.datetime.strptime(sample2, '%H:%M %y/%m/%d')
-print(dt2)
 sample3 = 'Tuesday, September 24, 2019'
-dt3 = datetime.datetime.strptime(sample3, '%A, %B %d, %Y')
-print(dt3)
 sample4 = '01.01.1970 - 00:00:01'
-dt4 = datetime.datetime.strptime(sample4, '%d.%m.%Y - %H:%M:%S')
-print(dt4)
 
+new_dt1 = datetime.strptime(sample1, '%b %d %Y %I:%M%p')
+print(new_dt1)
+new_dt2 = datetime.strptime(sample2, '%H:%M %y/%m/%d')
+print(new_dt2)
+new_dt3 = datetime.strptime(sample3, '%A, %B %d, %Y')
+print(new_dt3)
+new_dt4 = datetime.strptime(sample4, '%d.%m.%Y - %H:%M:%S')
+print(new_dt4)
 
 
 # Write a program to print yesterdays, today and tomorrow dates
+# from datetime import date
 
-today = datetime.date.today()
-print(f'Yesterday: {today - datetime.timedelta(days=1)}')
-print(f'Today: {today}')
-print(f'Tomorrow: {today + datetime.timedelta(days=1)}')
-
+current_date = datetime.today()
+yesterdays = datetime.today() - timedelta(hours=24)
+tomorow = datetime.today() + timedelta(days=1)
+print(yesterdays)
+print(current_date)
+print(tomorow)
 
 
 # Write a program to convert given timestamp to dd.mm.yyyy format
+
 some_day = 1014163200
-dt = datetime.datetime.fromtimestamp(some_day)
-print(dt.strftime('%d.%m.%Y'))
+s_d = datetime.fromtimestamp(some_day)
+s_dstring = s_d.strftime("%d.%b.%Y")
+print(s_dstring)
+
 
 
 # Write a function to subtract 2 weeks from timestamp and return new timestamp
 # input: timestamp (float)
 # output: timestamp (float)
-def two_weeks_back(ts):
-    dt = datetime.datetime.fromtimestamp(ts)
-    dt -= datetime.timedelta(weeks=2)
-    return dt.timestamp()
 
-
-print(two_weeks_back(1014163200))
+date_today =float(input('Za Imput6 Float 00.00 '))
+date_2weks_off = datetime.fromtimestamp(date_today) - timedelta(weeks=2)
+print(datetime.timestamp(date_2weks_off))
