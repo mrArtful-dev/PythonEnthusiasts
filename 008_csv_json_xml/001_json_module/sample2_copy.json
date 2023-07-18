@@ -1,0 +1,29 @@
+{
+  "people": [
+    {
+      "emails": [
+        "jack.sumers@example.com",
+        "jacksumers@work-place.com"
+      ],
+      "has_licence": false,
+      "name": "Jack Sumers",
+      "phone": "555-555-555",
+      "salary": 1500
+    },
+    {
+      "emails": null,
+      "has_licence": true,
+      "name": "Mary Smith",
+      "phone": "777-777-777",
+      "reminder": "Please update email!",
+      "salary": 1700
+    },
+    {
+      "emails": "stevencooke@example.com",
+      "has_licence": true,
+      "name": "Steven Cooke",
+      "phone": null,
+      "salary": 2500
+    }
+  ]
+}

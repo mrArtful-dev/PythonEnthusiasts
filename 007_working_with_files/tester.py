@@ -1,20 +1,14 @@
 
-# C:\Users\Roman\PycharmProjects\PythonEnthusiasts\007_working_with_files\text_files\tester.txt
-
-# 007_working_with_files/text_files/tester.txt
-
-# 'r' - read
-# 'a' - append
-# 'w' - write
-# 'x' - create
-# 'r+' - read and write
+with open('text_files/trimushketera.txt', 'r', encoding='utf8') as file:
+    data = file.read()
+    data = data.lower().replace('.', '').replace(',', '').replace('!', '').replace('?', '').replace('"', '').replace('(', '').replace(')', '').replace('*', '')
+    words = data.split()
+    unique = list(set(words))
+    unique.sort()
 
 
-with open('text_files/python.jpg', 'rb') as file:
-    with open('text_files/python_copy.jpg', 'wb') as wfile:
-        chunk = 25000
-        data = file.read(chunk)
-        # while len(data) > 0:
-        #     wfile.write(data)
-        #     data = file.read(chunk)
-        wfile.write(data)
+with open('text_files/trimushketera_copy.txt', 'w', encoding='utf8') as file:
+    file.write(f'There are {len(words)} words.\n')
+    file.write(f'There are {len(unique)} unique words.\n')
+    for word in unique:
+        file.write(word + '\n')
