@@ -36,20 +36,20 @@ people = [
         'name': 'Mary Pierce',
         'city': 'Dubai'
     },
-{
+    {
         'name': 'Lee Hong',
         'city': 'Tallinn'
     }
 ]
 
-
+people.sort(key=lambda person: person['city'])
 result = itertools.groupby(people, get_city)
 
 # Creating copies
-copy1, copy2 = itertools.tee(result)
-
-
-for key, group in copy1:
+# copy1, copy2 = itertools.tee(result)
+#
+#
+for key, group in result:
     print(key, group)
     print()
     # Print people grouped by city

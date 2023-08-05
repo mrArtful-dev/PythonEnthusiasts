@@ -57,9 +57,9 @@ import re
 #     print('GOOD')
 
 
-pattern5 = re.compile(r'[1-8]\d{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])\d{4}')
+pattern5 = re.compile(r'([1-8]\d{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])\d{4})')
 
 matches = pattern5.finditer('38803160272 98802144578 45615221234 45612482131')
 
 for match in matches:
-    print(match)
+    print(match.group())

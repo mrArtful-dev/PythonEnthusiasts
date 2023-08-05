@@ -2,15 +2,23 @@ import itertools
 
 letters = ['a', 'b', 'c', 'd']
 numbers = [0, 1, 2, 3]
-numbers2 = [4, 5, 4, 3, 2, 1, 0, 4, 8, 9, 10]
+numbers2 = [4, 5, 4, 3, 2, 1, 0, 4, 6, 98]
 selectors = [True, False, False, True]
 
-res = itertools.dropwhile(lambda x: x > 2, numbers2)
-print(list(res))
+# result = itertools.compress(letters, selectors)
+# print(list(result))
 
-res2 = itertools.takewhile(lambda x: x > 2, numbers2)
-print(list(res2))
+# result = itertools.filterfalse(lambda x: x > 2, numbers2)
+# print(list(result))
 
-res3 = itertools.accumulate(numbers2)
+# result = itertools.dropwhile(lambda x: x > 2, numbers2)
+# print(list(result))
+#
+# result = itertools.takewhile(lambda x: x > 2, numbers2)
+# print(list(result))
 
-print(list(res3))
+result = itertools.accumulate(numbers2)
+print(list(result))
+
+result = sum(numbers2)
+print(result)

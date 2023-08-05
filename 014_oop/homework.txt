@@ -1,0 +1,21 @@
+1. Animal Class: Create a base class called Animal with the following attributes and methods:
+
+* Attributes: name, species, age
+* Method: make_sound() that prints a generic sound the animal makes.
+
+2. Derived Classes: Create at least three derived classes from the Animal class, representing different species (e.g., Lion, Elephant, Penguin). Each derived class should have specific attributes and methods:
+
+* Attributes: Specific attributes related to the species (e.g., mane_color for Lion, trunk_length for Elephant)
+* Method: A species-specific method (e.g., roar() for Lion, spray_water() for Elephant)
+
+3. Enclosures: Create a class called Enclosure to represent different enclosures within the zoo. Each enclosure can contain one or more animals. The class should have:
+
+* Attributes: name, max_capacity
+* Method: add_animal(animal) to add an animal to the enclosure if there is space.
+
+4. Zoo Class: Create a class called Zoo that manages multiple enclosures. The class should have:
+
+* Attributes: name, enclosures (a list to store Enclosure objects)
+* Method: add_enclosure(enclosure) to add an enclosure to the zoo.
+* Method: list_animals() to list all animals in the zoo.
+* Method: feed_animals() to simulate feeding all animals in the zoo (print a message for each animal).
