@@ -1,22 +1,14 @@
-import requests
-from bs4 import BeautifulSoup
+import csv
 
-link = "https://www.ilmateenistus.ee/ilm/ilmavaatlused/vaatlusandmed/oopaevaandmed/"
-page = requests.get(link)
-soup = BeautifulSoup(page.content, "html.parser")
-table = soup.find("table", class_="table")
-tbody = table.find("tbody")
-rows = tbody.find_all("tr")
-table_headers = ["Jaam", "Õhutemperatuur (°C) keskmine", "Õhutemperatuur (°C) max", "Õhutemperatuur (°C) min",
-                 "Maapinna minimaalne temperatuur (°C)", "Minimaalne temperatuur 2cm kõrgusel maapinnast (°C)",
-                 "Suhteline õhuniiskus (%) keskmine", "Suhteline õhuniiskus (%) min", "Tuule kiirus (m/s) keskmine",
-                 "Tuule kiirus (m/s) max", "Sademed (mm)", "Päikesepaiste kestus (h)"]
-for row in rows:
-    cells = row.find_all('td')
-    info = ""
-    for index, cell in enumerate(cells):
-        text = cell.text
-        if text != "":
-            info += f"{table_headers[index]}: {text}\t\t"
-    print(info)
+print('Overall rank,', 'Country or region,', 'Score,', 'Freedom to make life choices')
 
+
+with open('../008_csv_json_xml/002_csv_module/csv_files/2019.csv', 'r', encoding='UTF8') as file:
+    reader = csv.DictReader(file)
+
+    for row in reader:
+        print(row['Overall rank'], row['Country or region'], row['Score'], row['Freedom to make life choices'])
+
+    top10 = sorted(reader, key=lambda x: list(x['Freedom to make life choices']), reverse=True)[:10]
+    for row in top10:
+        print(row['Overall rank'], row['Country or region'], row['Score'], row['Freedom to make life choices'])
