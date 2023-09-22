@@ -6,4 +6,23 @@ User
 
 {% block content %}
 <h1>Hello {{ user_name }}</h1>
+{% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        {% for cat, msg in messages %}
+            <div class="alert alert-{{ cat }}">
+                {{ msg }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+{% if user_email %}
+    <p>Is this your email?</p>
+{% else %}
+    <p>Please enter your email</p>
+{% endif %}
+<form action="#" method="post">
+    <input type="email" name="user-email" placeholder="Email" value="{{ user_email if user_email }}">
+    <input type="submit" value="Save">
+</form>
+<p><a href="/delete" style="color: red;">delete user</a></p>
 {% endblock %}

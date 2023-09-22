@@ -5,6 +5,17 @@ Login
 {% endblock %}
 
 {% block content %}
+
+{% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        {% for cat, msg in messages %}
+            <div class="alert alert-{{ cat }}">
+                {{ msg }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
 <div class="login-container text-center">
     <form action="#" method="post">
         <input type="text" name="user-name" placeholder="User name" class="my-3"><br>

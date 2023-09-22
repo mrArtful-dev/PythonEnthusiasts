@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, render_template, request, session
+from flask import Flask, redirect, url_for, render_template, request, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import timedelta
 import hashlib
@@ -41,9 +41,11 @@ def login():
         if user_in_db:
             if password == user_in_db.password:
                 session['user_name'] = name
-                session['email'] = user_in_db.email
+                session['user_email'] = user_in_db.email
+                flash('Login successful!', 'success')
                 return redirect(url_for('user', user_name=name, user_email=user_in_db.email))
             else:
+                flash('Wrong password!', 'danger')
                 return redirect(url_for('login'))
         else:
             new_user = Users(name, password, '')
@@ -51,26 +53,55 @@ def login():
             db.session.commit()
             session['user_name'] = name
             session['email'] = ''
+            flash('User was created!', 'success')
             return redirect(url_for('user', user_name=name))
     else:
         if 'user_name' in session:
+            flash('Already logged in!', 'primary')
             return redirect(url_for('user', user_name=session['user_name'], user_email=session['email']))
         else:
             return render_template('login.html')
 
 
-@app.route('/user')
+@app.route('/user', methods=['POST', 'GET'])
 def user():
     if 'user_name' in session:
         name = session['user_name']
-        return render_template('user.html', user_name=name)
+        if request.method == 'POST':
+            email = request.form['user-email']
+            session['user_email'] = email
+            user_in_db = Users.query.filter_by(name=name).first()
+            user_in_db.email = email
+            db.session.commit()
+            flash('Email was saved.', 'success')
+        else:
+            if 'user_email' in session:
+                email = session['user_email']
+            else:
+                email = ''
+        return render_template('user.html', user_name=name, user_email=email)
     else:
+        flash('You are not logged in!', 'primary')
         return redirect(url_for('login'))
 
 
 @app.route('/logout')
 def logout():
+    if 'user_name' in session:
+        session.pop('user_name', None)
+        session.pop('user_email', None)
+        flash('Logged out!', 'primary')
+    return redirect(url_for('login'))
+
+
+@app.route('/delete')
+def delete():
+    name = session['user_name']
+    Users.query.filter_by(name=name).delete()
+    db.session.commit()
     session.pop('user_name', None)
+    session.pop('user_email', None)
+    flash('User was deleted!', 'primary')
     return redirect(url_for('login'))
 
 
